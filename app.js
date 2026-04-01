@@ -1,0 +1,17 @@
+const express = require('express');
+const app = express();
+
+require('dotenv').config();
+app.use(express.json());
+
+
+
+
+const indexRouter = require("./routers/index");
+app.use('/api', indexRouter);
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+}
+);
