@@ -7,6 +7,14 @@ const Room = sequelize.define("room", {
         autoIncrement: true,
         primaryKey: true
     },
+    id_tower: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'tower',
+            key: 'id'
+        }
+    },
     name: {
         type: DataTypes.STRING,
         allowNull: false

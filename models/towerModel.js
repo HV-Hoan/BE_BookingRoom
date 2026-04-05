@@ -8,6 +8,14 @@ const Tower = sequelize.define("tower", {
         autoIncrement: true,
         primaryKey: true
     },
+    id_user: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'user',
+            key: 'id'
+        }
+    },
     name: {
         type: DataTypes.STRING,
         allowNull: false

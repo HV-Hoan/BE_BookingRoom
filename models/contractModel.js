@@ -8,13 +8,22 @@ const Contract = sequelize.define("contract", {
         autoIncrement: true,
         primaryKey: true
     },
-    userId: {
+    id_user: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: 'user',
+            key: 'id'
+        }
     },
-    roomId: {
+    id_room: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        unique: true,
+        references: {
+            model: 'room',
+            key: 'id'
+        }
     },
     startDate: {
         type: DataTypes.DATE,
