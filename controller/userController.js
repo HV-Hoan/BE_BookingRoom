@@ -33,4 +33,37 @@ exports.createUser = async (req, res) => {
     } catch (error) {
         return res.status(500).json({ error: 'Lỗi khi tạo người dùng' });
     }
-};  
+};
+
+exports.updateUser = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const { username, password, fullname, phonenumber } = req.body;
+        const user = await User.findByPk(userId);
+        if (!user) {
+            return res.status(404).json({ error: 'Người dùng không tồn tại' });
+        }
+        user.username = username || user.username;
+        user.password = password || user.password;
+        user.fullname = fullname || user.fullname;
+        user.phonenumber = phonenumber || user.phonenumber;
+        await user.save();
+        return res.json(user);
+    } catch (error) {
+        return res.status(500).json({ error: 'Lỗi khi cập nhật người dùng' });
+    }
+};
+
+exports.deleteUser = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const user = await User.findByPk(userId);
+        if (!user) {
+            return res.status(404).json({ error: 'Người dùng không tồn tại' });
+        }
+        await user.destroy();
+        return res.json({ message: 'Người dùng đã được xóa' });
+    } catch (error) {
+        return res.status(500).json({ error: 'Lỗi khi xóa người dùng' });
+    }
+};

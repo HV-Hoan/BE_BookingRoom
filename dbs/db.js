@@ -12,7 +12,8 @@ const sequelize = new Sequelize({
     dialect: "mysql",
     username: USER,
     password: USER_PASSWORD,
-    database: DATABASE_NAME
+    database: DATABASE_NAME,
+    logging: false
 });
 
 
